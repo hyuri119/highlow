@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ハイアンドロー</title>
+    <style type="text/css">
+        .parent{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            -webkit-transform: translate(-50%,-50%);
+            transform: translateY(-50%,-50%);
+        }
+        p{
+            text-align: center;
+        }
+        div{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="parent">
+<p style="text-align: left">ハイアンドローです。<br>
+場に出ている数字よりも大きいか小さいか<br>
+ボタンをクリックして当てて下さい</p>
+<div id="saidaikati" style="text-align: right">最大勝利数</div>
+<div id="katikazu" style='font-size:150%;'>勝利数</div>
+<br>
+<div style="text-align: left">今場に出ているカードは…</div>
+<div id="now" style='font-size:300%;'></div>
+<div id="msgout" style='font-size:150%;'>勝敗</div>
+
+<script>
+var card = Math.floor(Math.random()*13)+1;
+var newcard = Math.floor(Math.random()*13)+1;
+var judge = document.getElementById("msgout");
+var nowcard = document.getElementById("now");
+var kati = document.getElementById("katikazu");
+var saidai = document.getElementById("saidaikati");
+var cnt = 0;
+var saidaiti = 0;
+nowcard.innerHTML = card;
+
+
+function high(){
+    if(card < newcard){
+        win();
+    }
+    if(card == newcard){
+        draw();
+    }
+    if(card > newcard){
+        lose();
+    }
+    rndcard();
+}
+function low(){
+    if(card > newcard){
+        win();
+    }
+    if(card == newcard){
+        draw();
+    }
+    if(card < newcard){
+        lose();
+    }
+    rndcard();
+}
+function win(){
+    judge.innerHTML = "<span style='color:red;'>勝ち</span>";
+    kati.innerHTML = "現在" + ++cnt + "勝中";
+    if(saidaiti < cnt){
+        saidai.innerHTML = "最高" + ++saidaiti + "連勝";
+    }
+}
+function draw(){
+    judge.innerHTML = "引き分け";
+}
+function lose(){
+    judge.innerHTML = "<span style='color:blue;'>負け</span>";
+    cnt = 0;
+    kati.innerHTML = cnt + "勝";
+}
+function rndcard(){
+    card = newcard;
+    nowcard.innerHTML = card;
+    newcard = Math.floor(Math.random()*13)+1;
+}
+
+</script>
+
+<p><button onclick="high()">はい</button>
+<button onclick="low()">ろー</button></p>
+</div>
+<!--こちらにmsgoutをおいても反応しないなぜ-->
+</body>
+</html>
