@@ -3,13 +3,32 @@
 <head>
     <meta charset="utf-8">
     <title>ハイアンドロー</title>
+    <style type="text/css">
+        .parent{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            -webkit-transform: translate(-50%,-50%);
+            transform: translateY(-50%,-50%);
+        }
+        p{
+            text-align: center;
+        }
+        div{
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-
-<p>ハイアンドローなんだよ</p>
-<span id="saidaikati">最大勝利数</span>
+<div class="parent">
+<p style="text-align: left">ハイアンドローです。<br>
+場に出ている数字よりも大きいか小さいか<br>
+ボタンをクリックして当てて下さい</p>
+<div id="saidaikati" style="text-align: right">最大勝利数</div>
 <div id="katikazu" style='font-size:150%;'>勝利数</div>
 <br>
+<div style="text-align: left">今場に出ているカードは…</div>
 <div id="now" style='font-size:300%;'></div>
 <div id="msgout" style='font-size:150%;'>勝敗</div>
 
@@ -71,8 +90,10 @@ function rndcard(){
 }
 
 </script>
-<button onclick="high()">はい</button>
-<button onclick="low()">ろー</button>
+
+<p><button onclick="high()">はい</button>
+<button onclick="low()">ろー</button></p>
+</div>
 <!--こちらにmsgoutをおいても反応しないなぜ-->
 </body>
 </html>
